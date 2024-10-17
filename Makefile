@@ -1,5 +1,5 @@
 #-------------------------PROGRAM NAME------------------------#
-NAME							=	tinyshell
+NAME							=	philo
 all:							$(NAME)
 
 MAKEFLAGS						=	--no-print-directory
@@ -44,20 +44,9 @@ INC_DIR							=	include
 CPPFLAGS						+=	-I$(INC_DIR)
 CPPFLAGS						+=	-I$(LIBFT_DIR)/$(INC_DIR)
 
-#---------------------------LIBRARIES-------------------------#
-LIBFT_DIR						=	libft
-LIBFT							=	$(LIBFT_DIR)/libft.a
-LIBFLAGS						=	-lreadline
-LIBFLAGS						+=	-L$(LIBFT_DIR) -lft
-
-libft:	$(LIBFT)
-$(LIBFT):
-	@echo "LIBFT being created"
-	@$(MAKE) -C $(LIBFT_DIR) all
-
 #---------------------------LINKING---------------------------#
-$(NAME):	$(LIBFT) $(OBJ_FILES)
-	$(LINKER) $(OBJ_FILES) $(LIBFLAGS) -o $@
+$(NAME):	$(OBJ_FILES)
+	$(LINKER) $(OBJ_FILES) -o $@
 
 #---------------------------CLEANING--------------------------#
 clean:
@@ -69,12 +58,5 @@ fclean:		clean
 
 re:		fclean all
 
-libclean:
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-libre:		libclean libft
-
-ffclean:	fclean libclean
-fre:		ffclean re
-
-.PHONY: all libft clean fclean re libclean libre ffclean fre
+.PHONY: all clean fclean re
 #-------------------------------------------------------------#
