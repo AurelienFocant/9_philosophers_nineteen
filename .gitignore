@@ -1,0 +1,15 @@
+*.DS_Store
+
+*.swp
+
+.build*
+
+misc/tags
+
+*.a
+
+*Session*
+
+philo
+
+misc/.$minishell.drawio.bkp
