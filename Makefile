@@ -44,9 +44,17 @@ INC_DIR							=	include
 CPPFLAGS						+=	-I$(INC_DIR)
 CPPFLAGS						+=	-I$(LIBFT_DIR)/$(INC_DIR)
 
-#---------------------------LINKING---------------------------#
-$(NAME):	$(OBJ_FILES)
-	$(LINKER) $(OBJ_FILES) -o $@
+#---------------------------LIBRARIES-------------------------#
+LIBFT_DIR						=	libft
+LIBFT							=	ft
+LIBFLAGS						=	-L$(LIBFT_DIR) -l$(LIBFT)
+$(LIBFT):
+	@echo "LIBFT being created"
+	@$(MAKE) -C $(LIBFT_DIR) all
+
+#----------------------------LINKING--------------------------#
+$(NAME):	$(LIBFT) $(OBJ_FILES)
+	$(LINKER) $(OBJ_FILES) $(LIBFLAGS) -o $@
 
 #---------------------------CLEANING--------------------------#
 clean:
