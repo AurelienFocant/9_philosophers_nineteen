@@ -1,36 +1,46 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <pthread.h>
+
 #include "philosophers.h"
+
+void	fn_lock_neighbour_fork(t_philo *philo)
+{
+	if (philo->id % 2)
+		pthread_mutex_lock(&(LEFT_FORK));
+	else
+		pthread_mutex_lock(&(RIGHT_FORK));
+	printf("philo nb %i picked neighbour's fork\n", philo->id);
+}
+
+void	fn_lock_own_fork(t_philo *philo)
+{
+	pthread_mutex_lock(&(OWN_FORK));
+	printf("philo nb %i picked own fork\n", philo->id);
+}
+
+void	fn_unlock_neighbour_fork(t_philo *philo)
+{
+	if (philo->id % 2)
+		pthread_mutex_unlock(&(LEFT_FORK));
+	else
+		pthread_mutex_unlock(&(RIGHT_FORK));
+}
+
+void	fn_unlock_own_fork(t_philo *philo)
+{
+	pthread_mutex_unlock(&(OWN_FORK));
+}
 
 void	fn_eat(t_philo *philo)
 {
-	int	id;
-	int	nb_of_philo;
-	pthread_mutex_t	*forks;
-
-	id = philo->id;
-	nb_of_philo = philo->shared_context->nb_of_philo;
-	forks = philo->shared_context->forks;
-	if (id % 2)
-	{
-		pthread_mutex_lock(&(forks[(id + 1) %nb_of_philo]));
-		printf("philo nb %i picked left fork\n", id);
-	}
-	else
-	{
-		pthread_mutex_lock(&(forks[(id + nb_of_philo - 1) % nb_of_philo]));
-		printf("philo nb %i picked right fork\n", id);
-	}
-	pthread_mutex_lock(&(forks[id]));
-	printf("philo nb %i picked own fork\n", id);
-	printf("philo nb %i is eatin\n", id);
-	if (philo->id % 2)
-	{
-		pthread_mutex_unlock(&(forks[(id + 1) % nb_of_philo]));
-		printf("philo nb %i picked left fork\n", id);
-	}
-	else
-	{
-		pthread_mutex_unlock(&(forks[(id + nb_of_philo - 1) % nb_of_philo]));
-		printf("philo nb %i picked right fork\n", id);
-	}
-	pthread_mutex_unlock(&(philo->shared_context->forks[id]));
+	fn_check_for_deaths(philo);
+	fn_lock_neighbour_fork(philo);
+	fn_check_for_deaths(philo);
+	fn_lock_own_fork(philo);
+	printf("philo nb %i is eatin\n", philo->id);
+	fn_check_for_deaths(philo);
+	fn_unlock_neighbour_fork(philo);
+	fn_check_for_deaths(philo);
+	fn_unlock_own_fork(philo);
 }

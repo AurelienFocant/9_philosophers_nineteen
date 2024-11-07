@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <pthread.h>
+
 #include "philosophers.h"
 
 bool	fn_check_args(int argc)

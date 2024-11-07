@@ -62,5 +62,6 @@ void	*thread_routine(void *philo_arg)
 		// sleep
 		fn_sleep(philo);
 		// think
+		fn_think(philo);
 	}
 }
