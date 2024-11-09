@@ -23,7 +23,10 @@ pthread_mutex_t	*fn_init_forks(t_context *context)
 
 	forks = malloc(sizeof(pthread_mutex_t) * context->nb_of_philo);
 	if (!forks)
-		return (NULL);
+	{
+		printf("malloc on forks failed\n");
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	while (i < context->nb_of_philo)
 	{
@@ -41,7 +44,14 @@ t_philo	*fn_init_philos(t_context *shared_context)
 
 	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
 	if (!philos)
-		return (NULL);
+	{
+		i = 0;
+		while (i < shared_context->nb_of_philo)
+			pthread_mutex_destroy(&(shared_context->forks[i++]));
+		free(shared_context->forks);
+		printf("malloc on philos failed\n");
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	while (i < shared_context->nb_of_philo)
 	{

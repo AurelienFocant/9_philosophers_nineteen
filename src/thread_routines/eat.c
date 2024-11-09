@@ -34,8 +34,8 @@ void	fn_eat(t_philo *philo)
 	fn_lock_neighbour_fork(philo);
 	fn_check_for_deaths(philo);
 	fn_lock_own_fork(philo);
-	printf("philo nb %i is eatin\n", philo->id);
 	fn_check_for_deaths(philo);
+	printf("philo nb %i is eatin\n", philo->id);
 	fn_unlock_neighbour_fork(philo);
 	fn_check_for_deaths(philo);
 	fn_unlock_own_fork(philo);

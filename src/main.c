@@ -20,14 +20,9 @@ int	main(int argc, char **argv)
 	int				i;
 
 	fn_check_args(argc, argv);
-	philos = NULL;
 	forks = fn_init_forks(&shared_context);
-	if (!forks)
-		fn_free_and_exit("malloc on forks failed", philos);
 	shared_context = fn_setup_context(argv, forks);
 	philos = fn_init_philos(&shared_context);
-	if (!philos)
-		fn_free_and_exit("malloc on philos failed", philos);
 	i = 0;
 	while (i < shared_context.nb_of_philo)
 	{

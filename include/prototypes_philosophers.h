@@ -16,6 +16,11 @@ void	fn_cleanup_data(t_philo *philos);
 void	fn_free_and_exit(char *msg, t_philo *philos);
 
 
+/*----------------  src/timestamps_utils  ---------------*/
+/* File: get_time.c */
+long	fn_get_epoch_in_usec(void);
+
+
 /*----------------  src/thread_routines  ---------------*/
 /* File: eat.c */
 void	fn_lock_neighbour_fork(t_philo *philo);
