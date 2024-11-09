@@ -1,6 +1,17 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <pthread.h>
+
+#include "libft.h"
+
+# define FALSE	0
+# define TRUE	1
+
 # define ONE_SEC	1000
 
 # define NB_PHILO	philo->shared_context->nb_of_philo

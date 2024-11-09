@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <pthread.h>
-
 #include "philosophers.h"
 
 void	fn_lock_neighbour_fork(t_philo *philo)

@@ -36,20 +36,20 @@ pthread_mutex_t	*fn_init_forks(t_context *context)
 
 t_philo	*fn_init_philos(t_context *shared_context)
 { 
-	t_philo	*philo;
+	t_philo	*philos;
 	int		i;
 
-	philo = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
-	if (!philo)
+	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
+	if (!philos)
 		return (NULL);
 	i = 0;
 	while (i < shared_context->nb_of_philo)
 	{
-		philo[i].id = i;
-		philo[i].shared_context = shared_context;
+		philos[i].id = i;
+		philos[i].shared_context = shared_context;
 		i++;
 	}
-	return (philo);
+	return (philos);
 }
 
 void	*thread_routine(void *philo_arg)
@@ -63,7 +63,5 @@ void	*thread_routine(void *philo_arg)
 		fn_eat(philo);	
 		// sleep
 		fn_sleep(philo);
-		// think
-		fn_think(philo);
 	}
 }
