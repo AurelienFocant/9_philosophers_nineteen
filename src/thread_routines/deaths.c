@@ -18,10 +18,16 @@ bool	fn_check_others_death(t_philo *philo)
 void	fn_check_own_death(t_philo *philo)
 {
 	long	time_now;
+	long	time_diff;
+	long	time_two_die;
 
 	printf("id is %i\n", philo->id);
 	time_now = fn_get_epoch_in_usec();
 	printf("time since last meal is %lu\n", philo->time_since_last_meal);
+	time_diff = time_now - philo->time_since_last_meal;
+	time_two_die = philo->shared_context->time_to_die * mSEC;
+	printf("time now - time since last meal is %lu\n", time_diff);
+	printf("time to die is %lu\n", time_two_die);
 	if (time_now - philo->time_since_last_meal >= philo->shared_context->time_to_die * mSEC)
 	{
 		pthread_mutex_lock(&(philo->shared_context->death_mutex));

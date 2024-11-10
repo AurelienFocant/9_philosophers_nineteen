@@ -52,8 +52,8 @@ void	fn_try_to_eat(t_philo *philo)
 	fn_check_for_deaths(philo);
 	fn_lock_own_fork(philo);
 	fn_check_for_deaths(philo);
-	fn_eat(philo);
 	fn_update_time_last_meal(philo);
+	fn_eat(philo);
 	fn_unlock_neighbour_fork(philo);
 	fn_check_for_deaths(philo);
 	fn_unlock_own_fork(philo);
