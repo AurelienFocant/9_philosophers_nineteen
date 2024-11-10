@@ -4,6 +4,7 @@ t_context	fn_setup_context(char **argv, pthread_mutex_t *forks)
 {
 	t_context	context;
 
+	pthread_mutex_init(&(context.death_mutex), NULL);
 	context.is_dead[0] = FALSE;
 	context.is_dead[1] = -1;
 	context.nb_of_philo = ft_atoi(argv[1]);
@@ -56,6 +57,7 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	while (i < shared_context->nb_of_philo)
 	{
 		philos[i].id = i;
+		philos[i].time_since_last_meal = fn_get_epoch_in_usec();
 		philos[i].shared_context = shared_context;
 		i++;
 	}
@@ -70,7 +72,7 @@ void	*thread_routine(void *philo_arg)
 	while (true)
 	{
 		// eat
-		fn_eat(philo);	
+		fn_try_to_eat(philo);	
 		// sleep
 		fn_sleep(philo);
 	}

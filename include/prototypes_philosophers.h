@@ -18,6 +18,8 @@ void	fn_free_and_exit(char *msg, t_philo *philos);
 
 /*----------------  src/timestamps_utils  ---------------*/
 /* File: get_time.c */
+void	fn_update_time_last_meal(t_philo *philo);
+bool	fn_is_starving(t_philo *philo);
 long	fn_get_epoch_in_usec(void);
 
 
@@ -27,7 +29,7 @@ void	fn_lock_neighbour_fork(t_philo *philo);
 void	fn_lock_own_fork(t_philo *philo);
 void	fn_unlock_neighbour_fork(t_philo *philo);
 void	fn_unlock_own_fork(t_philo *philo);
-void	fn_eat(t_philo *philo);
+void	fn_try_to_eat(t_philo *philo);
 
 /* File: sleep.c */
 void	fn_sleep(t_philo *philo);
@@ -39,7 +41,9 @@ pthread_mutex_t	*fn_init_forks(t_context *context);
 t_philo	*fn_init_philos(t_context *shared_context);
 void	*thread_routine(void *philo_arg);
 
-/* File: check_deaths.c */
+/* File: deaths.c */
+bool	fn_check_others_death(t_philo *philo);
+void	fn_check_own_death(t_philo *philo);
 void	fn_check_for_deaths(t_philo *philo);
 
 #endif

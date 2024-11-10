@@ -13,6 +13,7 @@
 # define FALSE	0
 # define TRUE	1
 
+# define mSEC		1000
 # define ONE_SEC	1000000
 
 # define NB_PHILO	philo->shared_context->nb_of_philo
@@ -38,8 +39,8 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	t_context		*shared_context;
 	long			time_since_last_meal;
+	t_context		*shared_context;
 }	t_philo;
 
 #include "prototypes_philosophers.h"
