@@ -20,6 +20,7 @@ void	fn_free_and_exit(char *msg, t_philo *philos);
 /* File: get_time.c */
 void	fn_update_time_last_meal(t_philo *philo);
 bool	fn_is_starving(t_philo *philo);
+long	fn_get_timestamp(t_philo *philo);
 long	fn_get_epoch_in_usec(void);
 
 
@@ -29,6 +30,7 @@ void	fn_lock_neighbour_fork(t_philo *philo);
 void	fn_lock_own_fork(t_philo *philo);
 void	fn_unlock_neighbour_fork(t_philo *philo);
 void	fn_unlock_own_fork(t_philo *philo);
+void	fn_eat(t_philo *philo);
 void	fn_try_to_eat(t_philo *philo);
 
 /* File: sleep.c */
@@ -37,7 +39,7 @@ void	fn_think(t_philo philo);
 
 /* File: routines.c */
 t_context	fn_setup_context(char **argv, pthread_mutex_t *forks);
-pthread_mutex_t	*fn_init_forks(t_context *context);
+pthread_mutex_t	*fn_init_forks(int nb_of_philo);
 t_philo	*fn_init_philos(t_context *shared_context);
 void	*thread_routine(void *philo_arg);
 

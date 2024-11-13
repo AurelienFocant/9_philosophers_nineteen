@@ -2,11 +2,14 @@
 
 void	fn_lock_neighbour_fork(t_philo *philo)
 {
+	long	timestamp;
+
 	if (philo->id % 2)
 		pthread_mutex_lock(&(LEFT_FORK));
 	else
 		pthread_mutex_lock(&(RIGHT_FORK));
-	printf("philo nb %i picked neighbour's fork\n", philo->id);
+	timestamp = fn_get_timestamp(philo);
+	printf("%lu philo nb %i picked neighbour's fork\n", timestamp, philo->id);
 }
 
 void	fn_lock_own_fork(t_philo *philo)
@@ -30,17 +33,19 @@ void	fn_unlock_own_fork(t_philo *philo)
 
 void	fn_eat(t_philo *philo)
 {
-	long	time_start;
+	long	time_of_meal;
 	long	time_now;
+	long	timestamp;
 	int		time_to_eat;
 
 	time_to_eat = philo->shared_context->time_to_eat * mSEC;
-	time_start = fn_get_epoch_in_usec();
-	printf("philo nb %i is eatin\n", philo->id);
+	time_of_meal = fn_get_epoch_in_usec();
+	timestamp = fn_get_timestamp(philo);
+	printf("%lu philo nb %i is eatin\n", timestamp, philo->id);
 	while (TRUE)
 	{
 		time_now = fn_get_epoch_in_usec();
-		if (time_now >= (time_start + time_to_eat))
+		if (time_now >= (time_of_meal + time_to_eat))
 			break;
 	}
 }

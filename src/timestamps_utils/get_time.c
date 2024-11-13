@@ -14,6 +14,14 @@ bool	fn_is_starving(t_philo *philo)
 	return (true);
 }
 
+long	fn_get_timestamp(t_philo *philo)
+{
+	long	timestamp;
+
+	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;	
+	return (timestamp / mSEC);
+}
+
 long	fn_get_epoch_in_usec(void)
 {
 	struct timeval	timeval;
