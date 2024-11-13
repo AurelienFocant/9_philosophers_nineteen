@@ -30,3 +30,29 @@ void	*thread_routine(void *philo_arg)
 		fn_sleep(philo);
 	}
 }
+
+t_philo	*fn_init_philos(t_context *shared_context)
+{ 
+	t_philo	*philos;
+	int		i;
+
+	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
+	if (!philos)
+	{
+		i = 0;
+		while (i < shared_context->nb_of_philo)
+			pthread_mutex_destroy(&(shared_context->forks[i++]));
+		free(shared_context->forks);
+		printf("malloc on philos failed\n");
+		exit(EXIT_FAILURE);
+	}
+	i = 0;
+	while (i < shared_context->nb_of_philo)
+	{
+		philos[i].id = i;
+		philos[i].time_since_last_meal = fn_get_epoch_in_usec();
+		philos[i].shared_context = shared_context;
+		i++;
+	}
+	return (philos);
+}
