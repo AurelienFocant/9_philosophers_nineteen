@@ -38,8 +38,9 @@ void	fn_sleep(t_philo *philo);
 void	fn_think(t_philo philo);
 
 /* File: routines.c */
-t_context	fn_setup_context(char **argv, pthread_mutex_t *forks);
+t_context	*fn_setup_context(char **argv);
 void	*thread_routine(void *philo_arg);
+t_philo	*fn_init_philos(t_context *shared_context);
 
 /* File: deaths.c */
 bool	fn_check_others_death(t_philo *philo);

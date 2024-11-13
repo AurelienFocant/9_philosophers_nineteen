@@ -18,7 +18,7 @@ void	fn_destroy_mutexes(t_philo *philos)
 
 	philo = philos;
 	id = 0;
-	while (id < philos->shared_context->nb_of_philo)
+	while (id < NB_PHILO)
 	{
 		pthread_mutex_destroy(&OWN_FORK);
 		id++;
@@ -28,7 +28,6 @@ void	fn_destroy_mutexes(t_philo *philos)
 void	fn_cleanup_data(t_philo *philos)
 {
 	fn_destroy_mutexes(philos);
-	free(philos->shared_context->forks);
 	free(philos);
 }
 
