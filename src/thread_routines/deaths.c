@@ -26,6 +26,7 @@ void	fn_check_own_death(t_philo *philo)
 	long	time_now;
 	long	time_diff;
 	long	time_two_die;
+	long	timestamp;
 
 	time_now = fn_get_epoch_in_usec();
 	time_diff = time_now - philo->time_since_last_meal;
@@ -36,7 +37,10 @@ void	fn_check_own_death(t_philo *philo)
 		philo->shared_context->is_dead[0] = TRUE;
 		philo->shared_context->is_dead[1] = philo->id;
 		pthread_mutex_unlock(&(philo->shared_context->death_mutex));
-		printf("philo %i is dead\n", philo->id);
+		timestamp = fn_get_timestamp(philo);
+		printf("%lu philo %i is dead\n", timestamp, philo->id);
+		fn_unlock_own_fork(philo);
+		fn_unlock_neighbour_fork(philo);
 		pthread_exit(&(philo->thread));
 	}
 }
@@ -44,6 +48,11 @@ void	fn_check_own_death(t_philo *philo)
 void	fn_check_for_deaths(t_philo *philo)
 {
 	if (fn_check_others_death(philo))
+	{
+		//printf("someone died\n");
+		fn_unlock_own_fork(philo);
+		fn_unlock_neighbour_fork(philo);
 		pthread_exit(&(philo->thread));
+	}
 	fn_check_own_death(philo);
 }

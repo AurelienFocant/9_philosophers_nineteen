@@ -9,13 +9,16 @@ void	fn_lock_neighbour_fork(t_philo *philo)
 	else
 		pthread_mutex_lock(&(RIGHT_FORK));
 	timestamp = fn_get_timestamp(philo);
-	printf("%lu philo nb %i picked neighbour's fork\n", timestamp, philo->id);
+	printf("%lu philo nb %i picked other fork\n", timestamp, philo->id);
 }
 
 void	fn_lock_own_fork(t_philo *philo)
 {
+	long	timestamp;
+
 	pthread_mutex_lock(&(OWN_FORK));
-	printf("philo nb %i picked own fork\n", philo->id);
+	timestamp = fn_get_timestamp(philo);
+	printf("%lu philo nb %i picked own fork\n", timestamp, philo->id);
 }
 
 void	fn_unlock_neighbour_fork(t_philo *philo)
@@ -62,4 +65,5 @@ void	fn_try_to_eat(t_philo *philo)
 	fn_unlock_neighbour_fork(philo);
 	fn_check_for_deaths(philo);
 	fn_unlock_own_fork(philo);
+	fn_check_for_deaths(philo);
 }
