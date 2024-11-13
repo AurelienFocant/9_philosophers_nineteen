@@ -46,8 +46,9 @@ CPPFLAGS						+=	-I$(LIBFT_DIR)/$(INC_DIR)
 
 #---------------------------LIBRARIES-------------------------#
 LIBFT_DIR						=	libft
-LIBFT							=	ft
-LIBFLAGS						=	-L$(LIBFT_DIR) -l$(LIBFT)
+LIBFT							=	$(LIBFT_DIR)/libft.a
+FT								=	ft
+LIBFLAGS						=	-L$(LIBFT_DIR) -l$(FT)
 $(LIBFT):
 	@echo "LIBFT being created"
 	@$(MAKE) -C $(LIBFT_DIR) all
