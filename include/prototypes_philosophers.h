@@ -39,8 +39,6 @@ void	fn_think(t_philo philo);
 
 /* File: routines.c */
 t_context	fn_setup_context(char **argv, pthread_mutex_t *forks);
-pthread_mutex_t	*fn_init_forks(int nb_of_philo);
-t_philo	*fn_init_philos(t_context *shared_context);
 void	*thread_routine(void *philo_arg);
 
 /* File: deaths.c */
