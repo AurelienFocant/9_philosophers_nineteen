@@ -14,15 +14,18 @@ void	fn_join_threads(t_philo *philos)
 
 int	main(int argc, char **argv)
 {
-	pthread_mutex_t	*forks;
 	t_context		shared_context;
 	t_philo			*philos;
 	int				i;
 
-	fn_check_args(argc, argv);
-	forks = fn_init_forks(ft_atoi(argv[1]));
+	if (!fn_check_args(argc, argv));
+		return (EXIT_FAILURE);
 	shared_context = fn_setup_context(argv, forks);
+	if (!shared_context)
+		return (EXIT_FAILURE);
 	philos = fn_init_philos(&shared_context);
+	if (!philos)
+		return (EXIT_FAILURE);
 	i = 0;
 	while (i < shared_context.nb_of_philo)
 	{

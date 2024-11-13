@@ -40,6 +40,7 @@ typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
+	pthread_mutex_t	fork;
 	long			time_since_last_meal;
 	t_context		*shared_context;
 }	t_philo;

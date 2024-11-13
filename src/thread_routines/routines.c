@@ -14,56 +14,7 @@ t_context	fn_setup_context(char **argv, pthread_mutex_t *forks)
 	context.time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		context.total_nb_of_meals = ft_atoi(argv[5]);
-	context.forks = forks;
 	return (context);
-}
-
-pthread_mutex_t	*fn_init_forks(int nb_of_philo)
-{
-	pthread_mutex_t	*forks;
-	int	i;
-
-	forks = malloc(sizeof(pthread_mutex_t) * nb_of_philo);
-	if (!forks)
-	{
-		printf("malloc on forks failed\n");
-		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	while (i < nb_of_philo)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		printf("yo\n");
-		// check return value of syscall !!!
-		i++;
-	}
-	return (forks);
-}
-
-t_philo	*fn_init_philos(t_context *shared_context)
-{ 
-	t_philo	*philos;
-	int		i;
-
-	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
-	if (!philos)
-	{
-		i = 0;
-		while (i < shared_context->nb_of_philo)
-			pthread_mutex_destroy(&(shared_context->forks[i++]));
-		free(shared_context->forks);
-		printf("malloc on philos failed\n");
-		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	while (i < shared_context->nb_of_philo)
-	{
-		philos[i].id = i;
-		philos[i].time_since_last_meal = fn_get_epoch_in_usec();
-		philos[i].shared_context = shared_context;
-		i++;
-	}
-	return (philos);
 }
 
 void	*thread_routine(void *philo_arg)
