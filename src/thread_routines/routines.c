@@ -4,6 +4,7 @@ t_context	fn_setup_context(char **argv, pthread_mutex_t *forks)
 {
 	t_context	context;
 
+	context.time_of_start = fn_get_epoch_in_usec();
 	pthread_mutex_init(&(context.death_mutex), NULL);
 	context.is_dead[0] = FALSE;
 	context.is_dead[1] = -1;
@@ -17,21 +18,22 @@ t_context	fn_setup_context(char **argv, pthread_mutex_t *forks)
 	return (context);
 }
 
-pthread_mutex_t	*fn_init_forks(t_context *context)
+pthread_mutex_t	*fn_init_forks(int nb_of_philo)
 {
 	pthread_mutex_t	*forks;
 	int	i;
 
-	forks = malloc(sizeof(pthread_mutex_t) * context->nb_of_philo);
+	forks = malloc(sizeof(pthread_mutex_t) * nb_of_philo);
 	if (!forks)
 	{
 		printf("malloc on forks failed\n");
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
-	while (i < context->nb_of_philo)
+	while (i < nb_of_philo)
 	{
 		pthread_mutex_init(&forks[i], NULL);
+		printf("yo\n");
 		// check return value of syscall !!!
 		i++;
 	}
