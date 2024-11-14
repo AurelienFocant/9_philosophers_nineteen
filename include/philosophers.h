@@ -19,7 +19,7 @@
 # define NB_PHILO	philo->shared_context->nb_of_philo
 # define PHILO_ZERO	philo->shared_context->philo_zero
 # define OWN_FORK	philo->fork
-# define LEFT_FORK	((PHILO_ZERO + 1) % NB_PHILO)->fork	
+# define LEFT_FORK	(PHILO_ZERO + ((philo->id + 1) % NB_PHILO))->fork
 
 typedef struct s_philo t_philo;
 

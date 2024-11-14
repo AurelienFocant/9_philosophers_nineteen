@@ -4,15 +4,12 @@ void	fn_eat(t_philo *philo)
 {
 	long	time_of_meal;
 	long	time_now;
-	long	timestamp;
 	int		time_to_eat;
 
+	fn_print_state(philo, "is eating");
 	time_to_eat = philo->shared_context->time_to_eat * mSEC;
 	time_of_meal = fn_get_epoch_in_usec();
-	fn_announce_eating
-	timestamp = fn_get_timestamp(philo);
-	printf("%lu philo nb %i is eatin\n", timestamp, philo->id);
-	while (TRUE)
+	while (true)
 	{
 		time_now = fn_get_epoch_in_usec();
 		if (time_now >= (time_of_meal + time_to_eat))
@@ -29,7 +26,7 @@ void	fn_print_state(t_philo *philo, char *msg)
 	printf("%lu philo nb %i %s\n", timestamp, philo->id, msg);
 }
 
-void	fn_lock_fork(t_philo *philo)
+void	fn_lock_forks(t_philo *philo)
 {
 	fn_check_for_deaths(philo);
 	if (philo->id % 2)
@@ -51,7 +48,7 @@ void	fn_lock_fork(t_philo *philo)
 	fn_check_for_deaths(philo);
 }
 
-void	fn_unlock_fork(t_philo *philo)
+void	fn_unlock_forks(t_philo *philo)
 {
 	fn_check_for_deaths(philo);
 	if (philo->id % 2)

@@ -28,8 +28,8 @@ long	fn_get_epoch_in_usec(void);
 /* File: eat.c */
 void	fn_eat(t_philo *philo);
 void	fn_print_state(t_philo *philo, char *msg);
-void	fn_lock_fork(t_philo *philo);
-void	fn_unlock_fork(t_philo *philo);
+void	fn_lock_forks(t_philo *philo);
+void	fn_unlock_forks(t_philo *philo);
 void	fn_try_to_eat(t_philo *philo);
 
 /* File: sleep.c */

@@ -47,7 +47,7 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	i = 0;
 	while (i < shared_context->nb_of_philo)
 	{
-		if (pthread_mutex_init(&(philo[i].fork)) != EXIT_SUCCESS)
+		if (pthread_mutex_init(&(philos[i].fork), NULL) != EXIT_SUCCESS)
 		{
 			printf("error initiating forks\n");
 			free (philos);
