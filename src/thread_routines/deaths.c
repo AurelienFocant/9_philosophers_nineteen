@@ -39,8 +39,7 @@ void	fn_check_own_death(t_philo *philo)
 		pthread_mutex_unlock(&(philo->shared_context->death_mutex));
 		timestamp = fn_get_timestamp(philo);
 		printf("%lu philo %i is dead\n", timestamp, philo->id);
-		fn_unlock_own_fork(philo);
-		fn_unlock_neighbour_fork(philo);
+		fn_unlock_forks(philo);
 		pthread_exit(&(philo->thread));
 	}
 }
@@ -50,8 +49,7 @@ void	fn_check_for_deaths(t_philo *philo)
 	if (fn_check_others_death(philo))
 	{
 		//printf("someone died\n");
-		fn_unlock_own_fork(philo);
-		fn_unlock_neighbour_fork(philo);
+		fn_unlock_forks(philo);
 		pthread_exit(&(philo->thread));
 	}
 	fn_check_own_death(philo);
