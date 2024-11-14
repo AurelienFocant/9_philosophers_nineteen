@@ -19,7 +19,7 @@ bool	fn_setup_context(t_context *context, char **argv)
 	return (true);
 }
 
-void	*thread_routine(void *philo_arg)
+void	*philos_routine(void *philo_arg)
 {
 	t_philo	*philo;
 

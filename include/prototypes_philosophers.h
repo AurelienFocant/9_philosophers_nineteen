@@ -6,6 +6,7 @@
 /*----------------  src  ---------------*/
 /* File: main.c */
 void	fn_join_threads(t_philo *philos);
+void	fn_philo_start_meal(t_philo *philos);
 
 
 /*----------------  src/errors_utils  ---------------*/
@@ -38,7 +39,7 @@ void	fn_think(t_philo philo);
 
 /* File: routines.c */
 bool	fn_setup_context(t_context *context, char **argv);
-void	*thread_routine(void *philo_arg);
+void	*philos_routine(void *philo_arg);
 t_philo	*fn_init_philos(t_context *shared_context);
 
 /* File: deaths.c */

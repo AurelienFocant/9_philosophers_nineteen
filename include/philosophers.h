@@ -46,6 +46,13 @@ typedef struct s_philo
 	t_context		*shared_context;
 }	t_philo;
 
+typedef struct s_banshee
+{
+	pthread_t	thread;
+	t_philo		*philos;
+	t_context	*shared_context;
+}	t_banshee;
+
 #include "prototypes_philosophers.h"
 
 #endif
