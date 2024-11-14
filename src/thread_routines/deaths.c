@@ -51,5 +51,4 @@ void	fn_check_for_deaths(t_philo *philo)
 		fn_unlock_forks(philo);
 		pthread_exit(&(philo->thread));
 	}
-	fn_check_own_death(philo);
 }
