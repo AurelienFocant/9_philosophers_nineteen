@@ -16,6 +16,8 @@ bool	fn_setup_context(t_context *context, char **argv)
 	context->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		context->total_nb_of_meals = ft_atoi(argv[5]);
+	else
+		context->total_nb_of_meals = -1;
 	return (true);
 }
 
