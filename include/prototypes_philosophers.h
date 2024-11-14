@@ -31,6 +31,9 @@ void	fn_lock_own_fork(t_philo *philo);
 void	fn_unlock_neighbour_fork(t_philo *philo);
 void	fn_unlock_own_fork(t_philo *philo);
 void	fn_eat(t_philo *philo);
+void	fn_print_state(t_philo *philo, char *msg);
+void	fn_lock_fork(t_philo *philo);
+void	fn_lock_fork(t_philo *philo);
 void	fn_try_to_eat(t_philo *philo);
 
 /* File: sleep.c */

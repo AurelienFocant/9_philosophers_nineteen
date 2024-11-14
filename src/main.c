@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (!philos)
 		return (EXIT_FAILURE);
 	i = 0;
-	while (i < shared_context->nb_of_philo)
+	while (i < shared_context.nb_of_philo)
 	{
 		pthread_create(&(philos[i].thread), NULL, thread_routine, &philos[i]);
 		i++;
