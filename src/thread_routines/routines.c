@@ -41,14 +41,19 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
 	if (!philos)
 	{
-		printf("error mallocing philos");
+		printf("error mallocing philos\n");
 		return (NULL);
 	}
 	i = 0;
 	while (i < shared_context->nb_of_philo)
 	{
+		if (pthread_mutex_init(&(philo[i].fork)) != EXIT_SUCCESS)
+		{
+			printf("error initiating forks\n");
+			free (philos);
+			return (NULL);
+		}
 		philos[i].id = i;
-		pthread_mutex_init(&(philo[i].fork);
 		philos[i].time_since_last_meal = fn_get_epoch_in_usec();
 		philo[i].meals_eaten = 0;
 		philos[i].shared_context = shared_context;
