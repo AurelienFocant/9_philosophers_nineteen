@@ -50,20 +50,8 @@ void	fn_lock_forks(t_philo *philo)
 
 void	fn_unlock_forks(t_philo *philo)
 {
-	fn_check_for_deaths(philo);
-	if (philo->id % 2)
-	{
-		pthread_mutex_unlock(&(OWN_FORK));
-		fn_check_for_deaths(philo);
-		pthread_mutex_unlock(&(LEFT_FORK));
-	}
-	else
-	{
-		pthread_mutex_unlock(&(LEFT_FORK));
-		fn_check_for_deaths(philo);
-		pthread_mutex_unlock(&(OWN_FORK));
-	}
-	fn_check_for_deaths(philo);
+	pthread_mutex_unlock(&(OWN_FORK));
+	pthread_mutex_unlock(&(LEFT_FORK));
 }
 
 void	fn_try_to_eat(t_philo *philo)
