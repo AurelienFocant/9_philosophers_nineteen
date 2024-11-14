@@ -1,15 +1,13 @@
 #include "philosophers.h"
 
-t_context	*fn_setup_context(char **argv)
+bool	fn_setup_context(t_context *context, char **argv)
 {
-	t_context	*context;
-
-	context->time_of_start = fn_get_epoch_in_usec();
 	if (pthread_mutex_init(&(context->death_mutex), NULL) != EXIT_SUCCESS)
 	{
-		printf("error death mutex init");
-		return (NULL);
+		printf("error death mutex init\n");
+		return (false);
 	}
+	context->time_of_start = fn_get_epoch_in_usec();
 	context->is_dead[0] = FALSE;
 	context->is_dead[1] = -1;
 	context->nb_of_philo = ft_atoi(argv[1]);
@@ -18,7 +16,7 @@ t_context	*fn_setup_context(char **argv)
 	context->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		context->total_nb_of_meals = ft_atoi(argv[5]);
-	return (context);
+	return (true);
 }
 
 void	*thread_routine(void *philo_arg)
