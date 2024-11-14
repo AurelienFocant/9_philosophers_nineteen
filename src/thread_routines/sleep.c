@@ -2,10 +2,7 @@
 
 void	fn_sleep(t_philo *philo)
 {
-	long	timestamp;
-
-	timestamp = fn_get_timestamp(philo);
-	printf("%lu philo nb %i is sleeping\n", timestamp, philo->id);
+	fn_print_state(philo, "is sleeping");
 	usleep(philo->shared_context->time_to_sleep * mSEC);
 }
 

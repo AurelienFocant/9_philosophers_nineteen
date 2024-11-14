@@ -48,7 +48,6 @@ void	fn_check_for_deaths(t_philo *philo)
 {
 	if (fn_check_others_death(philo))
 	{
-		//printf("someone died\n");
 		fn_unlock_forks(philo);
 		pthread_exit(&(philo->thread));
 	}
