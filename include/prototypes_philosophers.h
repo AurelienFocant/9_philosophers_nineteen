@@ -5,8 +5,13 @@
 
 /*----------------  src  ---------------*/
 /* File: main.c */
-void	fn_join_threads(t_philo *philos);
-void	fn_philo_start_meal(t_philo *philos);
+void	fn_join_threads(t_banshee *banshee, t_philo *philos);
+void	fn_philos_start_meal(t_philo *philos);
+void	fn_keening(t_banshee *banshee, int id);
+bool	fn_is_philo_dead(t_banshee *banshee, int id);
+void	*banshee_routine(void *banshee_arg);
+void	fn_banshee(t_banshee *bansheee, t_philo *philos);
+t_banshee *fn_init_banshee(t_context *shared_context, t_philo *philos);
 
 
 /*----------------  src/errors_utils  ---------------*/
