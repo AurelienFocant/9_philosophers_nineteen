@@ -17,11 +17,11 @@
 # define ONE_SEC	1000000
 
 # define NB_PHILO	philo->shared_context->nb_of_philo
-# define FORKS		philo->shared_context->forks
-# define ID			philo->id
-# define OWN_FORK	FORKS[ID]
-# define LEFT_FORK	FORKS[(ID + 1) % NB_PHILO]
-# define RIGHT_FORK	FORKS[(ID + NB_PHILO - 1) % NB_PHILO]
+# define PHILO_ZERO	philo->shared_context->philo_zero
+# define OWN_FORK	philo->fork
+# define LEFT_FORK	(PHILO_ZERO + ((philo->id + 1) % NB_PHILO))->fork
+
+typedef struct s_philo t_philo;
 
 typedef	struct s_context
 {
@@ -29,20 +29,29 @@ typedef	struct s_context
 	pthread_mutex_t	death_mutex;
 	int				is_dead[2];
 	int				nb_of_philo;
+	t_philo			*philo_zero;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				total_nb_of_meals;
-	pthread_mutex_t	*forks;
 }	t_context;
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
+	pthread_mutex_t	fork;
 	long			time_since_last_meal;
+	int				meals_eaten;
 	t_context		*shared_context;
 }	t_philo;
+
+typedef struct s_banshee
+{
+	pthread_t	thread;
+	t_philo		*philos;
+	t_context	*shared_context;
+}	t_banshee;
 
 #include "prototypes_philosophers.h"
 

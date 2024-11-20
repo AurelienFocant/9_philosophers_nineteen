@@ -5,7 +5,13 @@
 
 /*----------------  src  ---------------*/
 /* File: main.c */
-void	fn_join_threads(t_philo *philos);
+void	fn_join_threads(t_banshee *banshee, t_philo *philos);
+void	fn_philos_start_meal(t_philo *philos);
+void	fn_keening(t_banshee *banshee, int id);
+bool	fn_is_philo_dead(t_banshee *banshee, int id);
+void	*banshee_routine(void *banshee_arg);
+void	fn_banshee(t_banshee *bansheee, t_philo *philos);
+t_banshee *fn_init_banshee(t_context *shared_context, t_philo *philos);
 
 
 /*----------------  src/errors_utils  ---------------*/
@@ -26,11 +32,10 @@ long	fn_get_epoch_in_usec(void);
 
 /*----------------  src/thread_routines  ---------------*/
 /* File: eat.c */
-void	fn_lock_neighbour_fork(t_philo *philo);
-void	fn_lock_own_fork(t_philo *philo);
-void	fn_unlock_neighbour_fork(t_philo *philo);
-void	fn_unlock_own_fork(t_philo *philo);
 void	fn_eat(t_philo *philo);
+void	fn_print_state(t_philo *philo, char *msg);
+void	fn_lock_forks(t_philo *philo);
+void	fn_unlock_forks(t_philo *philo);
 void	fn_try_to_eat(t_philo *philo);
 
 /* File: sleep.c */
@@ -38,10 +43,9 @@ void	fn_sleep(t_philo *philo);
 void	fn_think(t_philo philo);
 
 /* File: routines.c */
-t_context	fn_setup_context(char **argv, pthread_mutex_t *forks);
-pthread_mutex_t	*fn_init_forks(int nb_of_philo);
+bool	fn_setup_context(t_context *context, char **argv);
+void	*philos_routine(void *philo_arg);
 t_philo	*fn_init_philos(t_context *shared_context);
-void	*thread_routine(void *philo_arg);
 
 /* File: deaths.c */
 bool	fn_check_others_death(t_philo *philo);
