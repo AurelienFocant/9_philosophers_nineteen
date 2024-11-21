@@ -13,8 +13,12 @@ int	main(int argc, char **argv)
 	philos = fn_init_philos(&shared_context);
 	if (!philos)
 		return (EXIT_FAILURE);
-	if (!fn_banshee_start_thread(&banshee, &shared_context, philos)
-		|| fn_philos_start_threads(philos))
+	if (!fn_banshee_start_thread(&banshee, &shared_context, philos))
+	{
+		fn_cleanup_data(philos);
+		return (EXIT_FAILURE);
+	}
+	if(!fn_philos_start_threads(philos))
 	{
 		fn_cleanup_data(philos);
 		return (EXIT_FAILURE);
