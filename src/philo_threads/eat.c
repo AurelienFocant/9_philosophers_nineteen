@@ -28,7 +28,6 @@ void	fn_print_state(t_philo *philo, char *msg)
 
 void	fn_lock_forks(t_philo *philo)
 {
-	fn_check_for_deaths(philo);
 	if (philo->id % 2)
 	{
 		pthread_mutex_lock(&(OWN_FORK));
@@ -45,7 +44,6 @@ void	fn_lock_forks(t_philo *philo)
 		pthread_mutex_lock(&(OWN_FORK));
 		fn_print_state(philo, "picked up own fork");
 	}
-	fn_check_for_deaths(philo);
 }
 
 void	fn_unlock_forks(t_philo *philo)
@@ -56,20 +54,10 @@ void	fn_unlock_forks(t_philo *philo)
 
 void	fn_try_to_eat(t_philo *philo)
 {
-	/*
 	fn_check_for_deaths(philo);
-	fn_lock_neighbour_fork(philo);
-	fn_check_for_deaths(philo);
-	fn_lock_own_fork(philo);
-	 */
 	fn_lock_forks(philo);
+	fn_check_for_deaths(philo);
 	fn_update_time_last_meal(philo);
 	fn_eat(philo);
 	fn_unlock_forks(philo);
-	/*
-	fn_unlock_neighbour_fork(philo);
-	fn_check_for_deaths(philo);
-	fn_unlock_own_fork(philo);
-	fn_check_for_deaths(philo);
-	 */
 }

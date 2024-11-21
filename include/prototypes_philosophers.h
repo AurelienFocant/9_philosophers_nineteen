@@ -42,10 +42,8 @@ void	fn_lock_forks(t_philo *philo);
 void	fn_unlock_forks(t_philo *philo);
 void	fn_try_to_eat(t_philo *philo);
 
-/* File: sleep.c */
-void	fn_sleep(t_philo *philo);
-
 /* File: philos.c */
+void	fn_sleep(t_philo *philo);
 void	*philos_routine(void *philo_arg);
 void	fn_philos_start_meal(t_philo *philos);
 
