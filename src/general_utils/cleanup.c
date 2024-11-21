@@ -1,16 +1,5 @@
 #include "philosophers.h"
 
-bool	fn_check_args(int argc, char **argv)
-{
-	(void) argv;
-	if (argc < 5 || argc > 6)
-	{
-		printf("wrong args\n");
-		exit(EXIT_FAILURE);
-	}
-	return (true);
-}
-
 void	fn_destroy_mutexes(t_philo *philos)
 {
 	t_philo *philo;
@@ -37,4 +26,17 @@ void	fn_free_and_exit(char *msg, t_philo *philos)
 		fn_cleanup_data(philos);
 	printf("%s\n", msg);
 	exit(EXIT_FAILURE);
+}
+
+void	fn_join_threads(t_banshee *banshee, t_philo *philos)
+{
+	int	id;
+
+	pthread_join(banshee->thread, NULL);
+	id = 0;
+	while (id < philos->shared_context->nb_of_philo)
+	{
+		pthread_join(philos[id].thread, NULL);
+		id++;
+	}
 }
