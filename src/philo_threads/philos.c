@@ -19,15 +19,20 @@ void	*philos_routine(void *philo_arg)
 	}
 }
 
-void	fn_philos_start_threads(t_philo *philos)
+bool	fn_philos_start_threads(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
 	while (i < philos->shared_context->nb_of_philo)
 	{
-		pthread_create(&(philos[i].thread), NULL, philos_routine, &philos[i]);
-		// check return value of syscall
+		if (pthread_create
+				(&(philos[i].thread), NULL, philos_routine, &philos[i])
+				!= EXIT_SUCCESS)
+		{
+			return (false);
+		}
 		i++;
 	}
+		return (true);
 }

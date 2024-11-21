@@ -8,7 +8,7 @@
 bool	fn_is_philo_dead(t_banshee *banshee, int id);
 void	fn_keening(t_banshee *banshee, int id);
 void	*banshee_routine(void *banshee_arg);
-void	fn_banshee_start_thread(t_banshee *banshee, t_context *shared_context, t_philo *philos);
+bool	fn_banshee_start_thread(t_banshee *banshee, t_context *shared_context, t_philo *philos);
 
 /* File: deaths.c */
 bool	fn_check_others_death(t_philo *philo);
@@ -23,7 +23,7 @@ bool	fn_setup_context(t_context *context, char **argv);
 t_philo	*fn_init_philos(t_context *shared_context);
 
 /* File: cleanup.c */
-void	fn_destroy_mutexes(t_philo *philos);
+void	fn_destroy_mutexes(t_philo *philo);
 void	fn_cleanup_data(t_philo *philos);
 void	fn_free_and_exit(char *msg, t_philo *philos);
 void	fn_join_threads(t_banshee *banshee, t_philo *philos);
@@ -44,7 +44,7 @@ void	fn_try_to_eat(t_philo *philo);
 /* File: philos.c */
 void	fn_sleep(t_philo *philo);
 void	*philos_routine(void *philo_arg);
-void	fn_philos_start_threads(t_philo *philos);
+bool	fn_philos_start_threads(t_philo *philos);
 
 
 /*----------------  src/timestamps_utils  ---------------*/

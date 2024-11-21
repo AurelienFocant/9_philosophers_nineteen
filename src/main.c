@@ -3,8 +3,8 @@
 int	main(int argc, char **argv)
 {
 	t_context	shared_context;
-	t_philo		*philos;
 	t_banshee	banshee;
+	t_philo		*philos;
 
 	if (!fn_check_args(argc, argv))
 		return (EXIT_FAILURE);
@@ -13,7 +13,11 @@ int	main(int argc, char **argv)
 	philos = fn_init_philos(&shared_context);
 	if (!philos)
 		return (EXIT_FAILURE);
-	fn_banshee_start_thread(&banshee, &shared_context, philos);
+	if (!fn_banshee_start_thread(&banshee, &shared_context, philos))
+	{
+		fn_cleanup_data(philos);
+		return (EXIT_FAILURE);
+	}
 	fn_philos_start_threads(philos);
 	fn_join_threads(&banshee, philos);
 	fn_cleanup_data(philos);

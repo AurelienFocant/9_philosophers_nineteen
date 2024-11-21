@@ -52,10 +52,15 @@ void	*banshee_routine(void *banshee_arg)
 	return (NULL);
 }
 
-void	fn_banshee_start_thread(t_banshee *banshee, t_context *shared_context, t_philo *philos)
+bool	fn_banshee_start_thread(t_banshee *banshee, t_context *shared_context, t_philo *philos)
 {
 	banshee->shared_context = shared_context;
 	banshee->philos = philos;
-	pthread_create(&(banshee->thread), NULL, banshee_routine, banshee);
-	//check return value of syscall
+	if (pthread_create
+				(&(banshee->thread), NULL, banshee_routine, banshee)
+				!= EXIT_SUCCESS)
+	{
+		return (false);
+	}
+	return (true);
 }

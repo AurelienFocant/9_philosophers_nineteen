@@ -1,17 +1,16 @@
 #include "philosophers.h"
 
-void	fn_destroy_mutexes(t_philo *philos)
+void	fn_destroy_mutexes(t_philo *philo)
 {
-	t_philo *philo;
 	int	id;
 
-	philo = philos;
 	id = 0;
 	while (id < NB_PHILO)
 	{
 		pthread_mutex_destroy(&OWN_FORK);
 		id++;
 	}
+	pthread_mutex_destroy(&philo->shared_context->death_mutex);
 }
 
 void	fn_cleanup_data(t_philo *philos)
@@ -32,11 +31,15 @@ void	fn_join_threads(t_banshee *banshee, t_philo *philos)
 {
 	int	id;
 
-	pthread_join(banshee->thread, NULL);
-	id = 0;
-	while (id < philos->shared_context->nb_of_philo)
+	if (banshee)
+		pthread_join(banshee->thread, NULL);
+	if (philos)
 	{
-		pthread_join(philos[id].thread, NULL);
-		id++;
+		id = 0;
+		while (id < philos->shared_context->nb_of_philo)
+		{
+			pthread_join(philos[id].thread, NULL);
+			id++;
+		}
 	}
 }
