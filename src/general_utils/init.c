@@ -1,5 +1,16 @@
 #include "philosophers.h"
 
+bool	fn_check_args(int argc, char **argv)
+{
+	(void) argv;
+	if (argc < 5 || argc > 6)
+	{
+		printf("wrong args\n");
+		exit(EXIT_FAILURE);
+	}
+	return (true);
+}
+
 bool	fn_setup_context(t_context *context, char **argv)
 {
 	if (pthread_mutex_init(&(context->death_mutex), NULL) != EXIT_SUCCESS)
@@ -19,20 +30,6 @@ bool	fn_setup_context(t_context *context, char **argv)
 	else
 		context->total_nb_of_meals = -1;
 	return (true);
-}
-
-void	*philos_routine(void *philo_arg)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *) philo_arg;
-	while (true)
-	{
-		// eat
-		fn_try_to_eat(philo);	
-		// sleep
-		fn_sleep(philo);
-	}
 }
 
 t_philo	*fn_init_philos(t_context *shared_context)
@@ -63,4 +60,15 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	}
 	shared_context->philo_zero = philos;
 	return (philos);
+}
+
+t_banshee	*fn_init_banshee(t_context *shared_context, t_philo *philos)
+{
+	t_banshee *banshee;
+
+	banshee = malloc(sizeof(t_banshee));
+	// protect malloc
+	banshee->shared_context = shared_context;
+	banshee->philos = philos;
+	return (banshee);
 }
