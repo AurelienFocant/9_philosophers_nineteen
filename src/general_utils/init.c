@@ -46,7 +46,7 @@ t_philo	*fn_init_philos(t_context *shared_context)
 			return (NULL);
 		}
 		philos[i].id = i;
-		philos[i].time_since_last_meal = fn_get_epoch_in_usec();
+		philos[i].time_of_last_meal = fn_get_epoch_in_usec();
 		philos[i].meals_eaten = 0;
 		philos[i].shared_context = shared_context;
 		i++;

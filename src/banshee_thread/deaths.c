@@ -15,12 +15,6 @@ bool	fn_check_others_death(t_philo *philo)
 	}
 }
 
-/*
-   printf("id is %i\n", philo->id);
-   printf("time since last meal is %lu\n", philo->time_since_last_meal);
-   printf("time now - time since last meal is %lu\n", time_diff);
-   printf("time to die is %lu\n", time_two_die);
-*/
 void	fn_check_own_death(t_philo *philo)
 {
 	long	time_now;
@@ -29,7 +23,7 @@ void	fn_check_own_death(t_philo *philo)
 	long	timestamp;
 
 	time_now = fn_get_epoch_in_usec();
-	time_diff = time_now - philo->time_since_last_meal;
+	time_diff = time_now - philo->time_of_last_meal;
 	time_to_die = philo->shared_context->time_to_die * mSEC;
 	if (time_diff >= time_to_die)
 	{

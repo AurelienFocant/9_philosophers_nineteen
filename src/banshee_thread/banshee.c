@@ -3,7 +3,7 @@
 bool	fn_is_philo_dead(t_banshee *banshee, int id)
 {
 	long	time_now;
-	long	time_diff;
+	long	time_since_last_meal;
 	long	time_to_die;
 
 	/* 
@@ -11,9 +11,9 @@ bool	fn_is_philo_dead(t_banshee *banshee, int id)
 	 * time diff --> time_since_last_meal
 	 */
 	time_now = fn_get_epoch_in_usec();
-	time_diff = time_now - banshee->philos[id].time_since_last_meal;
+	time_since_last_meal = time_now - banshee->philos[id].time_of_last_meal;
 	time_to_die = banshee->shared_context->time_to_die * mSEC;
-	if (time_diff >= time_to_die)
+	if (time_since_last_meal >= time_to_die)
 		return (true);
 	return (false);
 }
@@ -52,10 +52,7 @@ void	*banshee_routine(void *banshee_arg)
 	return (NULL);
 }
 
-bool	fn_banshee_start_thread(
-		t_banshee *banshee,
-		t_context *shared_context,
-		t_philo *philos)
+bool	fn_banshee_start_thread( t_banshee *banshee, t_context *shared_context, t_philo *philos)
 {
 	banshee->shared_context = shared_context;
 	banshee->philos = philos;

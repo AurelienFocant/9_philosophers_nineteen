@@ -8,7 +8,7 @@
 bool	fn_is_philo_dead(t_banshee *banshee, int id);
 void	fn_keening(t_banshee *banshee, int id);
 void	*banshee_routine(void *banshee_arg);
-bool	fn_banshee_start_thread(t_banshee *banshee, t_context *shared_context, t_philo *philos);
+bool	fn_banshee_start_thread( t_banshee *banshee, t_context *shared_context, t_philo *philos);
 
 /* File: deaths.c */
 bool	fn_check_others_death(t_philo *philo);

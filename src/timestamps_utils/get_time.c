@@ -2,7 +2,7 @@
 
 void	fn_update_time_last_meal(t_philo *philo)
 {
-	philo->time_since_last_meal = fn_get_epoch_in_usec();
+	philo->time_of_last_meal = fn_get_epoch_in_usec();
 }
 
 bool	fn_is_starving(t_philo *philo)
@@ -27,7 +27,7 @@ long	fn_get_epoch_in_usec(void)
 	struct timeval	timeval;
 	long			epoch;
 
-	gettimeofday(&timeval, NULL)
+	gettimeofday(&timeval, NULL);
 	epoch = (timeval.tv_sec * ONE_SEC) + timeval.tv_usec;
 	return (epoch);
 }
