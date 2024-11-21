@@ -18,7 +18,7 @@ long	fn_get_timestamp(t_philo *philo)
 {
 	long	timestamp;
 
-	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;	
+	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;
 	return (timestamp / mSEC);
 }
 
@@ -27,8 +27,7 @@ long	fn_get_epoch_in_usec(void)
 	struct timeval	timeval;
 	long			epoch;
 
-	gettimeofday(&timeval, NULL);
-	// check return time of syscall
+	gettimeofday(&timeval, NULL)
 	epoch = (timeval.tv_sec * ONE_SEC) + timeval.tv_usec;
 	return (epoch);
 }

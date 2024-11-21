@@ -14,7 +14,7 @@ void	*philos_routine(void *philo_arg)
 	philo = (t_philo *) philo_arg;
 	while (true)
 	{
-		fn_try_to_eat(philo);	
+		fn_try_to_eat(philo);
 		fn_sleep(philo);
 	}
 }
@@ -27,12 +27,12 @@ bool	fn_philos_start_threads(t_philo *philos)
 	while (i < philos->shared_context->nb_of_philo)
 	{
 		if (pthread_create
-				(&(philos[i].thread), NULL, philos_routine, &philos[i])
-				!= EXIT_SUCCESS)
+			(&(philos[i].thread), NULL, philos_routine, &philos[i])
+			!= EXIT_SUCCESS)
 		{
 			return (false);
 		}
 		i++;
 	}
-		return (true);
+	return (true);
 }

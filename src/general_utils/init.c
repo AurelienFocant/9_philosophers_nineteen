@@ -14,10 +14,7 @@ bool	fn_check_args(int argc, char **argv)
 bool	fn_setup_context(t_context *context, char **argv)
 {
 	if (pthread_mutex_init(&(context->death_mutex), NULL) != EXIT_SUCCESS)
-	{
-		printf("error death mutex init\n");
 		return (false);
-	}
 	context->time_of_start = fn_get_epoch_in_usec();
 	context->is_dead[0] = FALSE;
 	context->is_dead[1] = -1;
@@ -33,22 +30,18 @@ bool	fn_setup_context(t_context *context, char **argv)
 }
 
 t_philo	*fn_init_philos(t_context *shared_context)
-{ 
+{
 	t_philo	*philos;
 	int		i;
 
 	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
 	if (!philos)
-	{
-		printf("error mallocing philos\n");
 		return (NULL);
-	}
 	i = 0;
 	while (i < shared_context->nb_of_philo)
 	{
 		if (pthread_mutex_init(&(philos[i].fork), NULL) != EXIT_SUCCESS)
 		{
-			printf("error initiating forks\n");
 			free(philos);
 			return (NULL);
 		}

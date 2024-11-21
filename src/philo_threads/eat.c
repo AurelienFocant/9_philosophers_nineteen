@@ -13,7 +13,7 @@ void	fn_eat(t_philo *philo)
 	{
 		time_now = fn_get_epoch_in_usec();
 		if (time_now >= (time_of_meal + time_to_eat))
-			break;
+			break ;
 	}
 }
 
