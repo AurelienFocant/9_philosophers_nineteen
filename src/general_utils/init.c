@@ -49,7 +49,7 @@ t_philo	*fn_init_philos(t_context *shared_context)
 		if (pthread_mutex_init(&(philos[i].fork), NULL) != EXIT_SUCCESS)
 		{
 			printf("error initiating forks\n");
-			free (philos);
+			free(philos);
 			return (NULL);
 		}
 		philos[i].id = i;
@@ -60,15 +60,4 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	}
 	shared_context->philo_zero = philos;
 	return (philos);
-}
-
-t_banshee	*fn_init_banshee(t_context *shared_context, t_philo *philos)
-{
-	t_banshee *banshee;
-
-	banshee = malloc(sizeof(t_banshee));
-	// protect malloc
-	banshee->shared_context = shared_context;
-	banshee->philos = philos;
-	return (banshee);
 }

@@ -19,7 +19,7 @@ void	*philos_routine(void *philo_arg)
 	}
 }
 
-void	fn_philos_start_meal(t_philo *philos)
+void	fn_philos_start_threads(t_philo *philos)
 {
 	int	i;
 
