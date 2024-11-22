@@ -10,9 +10,6 @@
 
 #include "libft.h"
 
-# define FALSE	0
-# define TRUE	1
-
 # define mSEC		1000
 # define ONE_SEC	1000000
 
@@ -27,7 +24,7 @@ typedef	struct s_context
 {
 	long			time_of_start;
 	pthread_mutex_t	death_mutex;
-	int				is_dead[2];
+	bool			is_dead;
 	int				nb_of_philo;
 	t_philo			*philo_zero;
 	int				time_to_die;
