@@ -6,7 +6,7 @@ bool	fn_is_philo_dead(t_banshee *banshee, int id)
 	long	time_since_last_meal;
 	long	time_to_die;
 
-	if (banshee->philos[id]->is_satiated)
+	if (banshee->philos[id].is_satiated)
 		return(false);
 	time_now = fn_get_epoch_in_usec();
 	time_since_last_meal = time_now - banshee->philos[id].time_of_last_meal;
