@@ -1,5 +1,14 @@
 #include "philosophers.h"
 
+void	fn_print_state(t_philo *philo, char *msg)
+{
+	long	timestamp;
+
+	fn_check_for_deaths(philo);
+	timestamp = fn_get_timestamp(philo);
+	printf("%lu philo nb %i %s\n", timestamp, philo->id, msg);
+}
+
 void	fn_sleep(t_philo *philo)
 {
 	fn_check_for_deaths(philo);
