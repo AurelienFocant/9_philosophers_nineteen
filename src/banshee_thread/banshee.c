@@ -52,13 +52,13 @@ void	*banshee_routine(void *banshee_arg)
 		id = 0;
 		while (id < banshee->shared_context->nb_of_philo)
 		{
+			if (fn_all_satiated(banshee))
+				return (NULL);
 			if (fn_is_philo_dead(banshee, id))
 			{
 				fn_keening(banshee, id);
 				return (NULL);
 			}
-			if (fn_all_satiated(banshee))
-				return (NULL);
 			id++;
 		}
 	}
