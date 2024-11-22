@@ -43,6 +43,7 @@ typedef struct s_philo
 	pthread_mutex_t	fork;
 	long			time_of_last_meal;
 	int				meals_eaten;
+	bool			is_satiated;
 	t_context		*shared_context;
 }	t_philo;
 

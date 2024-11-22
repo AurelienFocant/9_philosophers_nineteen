@@ -7,12 +7,12 @@
 /* File: banshee.c */
 bool	fn_is_philo_dead(t_banshee *banshee, int id);
 void	fn_keening(t_banshee *banshee, int id);
+bool	fn_all_satiated(t_banshee *banshee);
 void	*banshee_routine(void *banshee_arg);
 bool	fn_banshee_start_thread( t_banshee *banshee, t_context *shared_context, t_philo *philos);
 
 /* File: deaths.c */
 bool	fn_check_others_death(t_philo *philo);
-void	fn_check_own_death(t_philo *philo);
 void	fn_check_for_deaths(t_philo *philo);
 
 
@@ -36,6 +36,7 @@ void	fn_join_threads(t_banshee *banshee, t_philo *philos);
 /*----------------  src/philo_threads  ---------------*/
 /* File: eat.c */
 void	fn_eat(t_philo *philo);
+void	fn_check_it_satiated(t_philo *philo);;
 void	fn_print_state(t_philo *philo, char *msg);
 void	fn_lock_forks(t_philo *philo);
 void	fn_unlock_forks(t_philo *philo);
