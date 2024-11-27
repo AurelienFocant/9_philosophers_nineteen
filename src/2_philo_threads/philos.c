@@ -11,9 +11,17 @@ void	fn_print_state(t_philo *philo, char *msg)
 
 void	fn_sleep(t_philo *philo)
 {
+	long	time_now;
+
 	fn_check_for_deaths(philo);
 	fn_print_state(philo, "is sleeping");
-	usleep(philo->shared_context->time_to_sleep * mSEC);
+	while (true)
+	{
+		usleep(100);
+		time_now = fn_get_epoch_in_usec();
+		if (time_now >= (philo->time_of_last_meal + philo->shared_context->time_to_sleep))
+			break ;
+	}
 }
 
 void	*philos_routine(void *philo_arg)
