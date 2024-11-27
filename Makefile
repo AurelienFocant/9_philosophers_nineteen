@@ -8,6 +8,7 @@ MAKEFLAGS						=	--no-print-directory
 CC								=	cc
 CFLAGS							=	-Wall -Wextra -Werror
 CFLAGS							+=	-g3
+CFLAGS							+=	-pthread
 
 LINK	=	$(shell ld -v 2>&1 | grep --quiet GNU && gold -v)
 ifneq ($(LINK),)
