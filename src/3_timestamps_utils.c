@@ -19,6 +19,16 @@ long	fn_get_timestamp(t_philo *philo)
 	long	timestamp;
 
 	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;
+	fn_check_for_deaths(philo);
+	return (timestamp / mSEC);
+}
+
+long	fn_get_timestamp_banshee(t_philo *philo)
+{
+	long	timestamp;
+
+	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;
+	//fn_check_for_deaths(philo);
 	return (timestamp / mSEC);
 }
 

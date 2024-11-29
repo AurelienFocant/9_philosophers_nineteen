@@ -6,14 +6,20 @@ void	fn_print_state(t_philo *philo, char *msg)
 
 	fn_check_for_deaths(philo);
 	timestamp = fn_get_timestamp(philo);
-	printf("%lu philo nb %i %s\n", timestamp, philo->id, msg);
+	(void) timestamp;
+	fn_check_for_deaths(philo);
+	pthread_mutex_lock(&(philo->shared_context->print_mutex));
+	printf("%lu philo nb %i %s\n", fn_get_timestamp(philo), philo->id, msg);
+	pthread_mutex_unlock(&(philo->shared_context->print_mutex));
 }
 
 void	fn_sleep(t_philo *philo)
 {
 	long	time_now;
 
+	//printf("philo nb %i before checking death\n", philo->id);
 	fn_check_for_deaths(philo);
+	//printf("philo nb %i after checking death\n", philo->id);
 	fn_print_state(philo, "is sleeping");
 	while (true)
 	{

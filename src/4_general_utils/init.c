@@ -15,6 +15,8 @@ bool	fn_setup_context(t_context *context, char **argv)
 {
 	if (pthread_mutex_init(&(context->death_mutex), NULL) != EXIT_SUCCESS)
 		return (false);
+	if (pthread_mutex_init(&(context->print_mutex), NULL) != EXIT_SUCCESS)
+		return (false);
 	context->time_of_start = fn_get_epoch_in_usec();
 	context->is_dead = false;
 	context->nb_of_philo = ft_atoi(argv[1]);

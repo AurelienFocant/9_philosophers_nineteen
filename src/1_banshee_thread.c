@@ -23,8 +23,8 @@ void	fn_keening(t_banshee *banshee, int id)
 	pthread_mutex_lock(&(banshee->shared_context->death_mutex));
 	banshee->shared_context->is_dead = true;
 	pthread_mutex_unlock(&(banshee->shared_context->death_mutex));
-	timestamp = fn_get_timestamp(banshee->philos);
-	printf("%lu philo nb %i dead\n", timestamp, id);
+	timestamp = fn_get_timestamp_banshee(banshee->philos);
+	printf("%lu philo nb %i DEAD!!!!!!!!!!!\n", timestamp, id);
 }
 
 bool	fn_all_satiated(t_banshee *banshee)

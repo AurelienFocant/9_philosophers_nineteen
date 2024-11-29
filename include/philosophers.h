@@ -24,6 +24,7 @@ typedef	struct s_context
 {
 	long			time_of_start;
 	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	print_mutex;
 	bool			is_dead;
 	int				nb_of_philo;
 	t_philo			*philo_zero;
