@@ -14,9 +14,9 @@
 # define ONE_SEC	1000000
 
 # define NB_PHILO	philo->shared_context->nb_of_philo
-# define PHILO_ZERO	philo->shared_context->philo_zero
+# define PHILOS	philo->shared_context->philos
 # define OWN_FORK	philo->fork
-# define LEFT_FORK	(PHILO_ZERO + ((philo->id + 1) % NB_PHILO))->fork
+# define LEFT_FORK	(PHILOS + ((philo->id + 1) % NB_PHILO))->fork
 
 typedef struct s_philo t_philo;
 
@@ -27,7 +27,7 @@ typedef	struct s_context
 	pthread_mutex_t	print_mutex;
 	bool			is_dead;
 	int				nb_of_philo;
-	t_philo			*philo_zero;
+	t_philo			*philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;

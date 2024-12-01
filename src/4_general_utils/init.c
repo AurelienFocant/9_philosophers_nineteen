@@ -52,6 +52,6 @@ t_philo	*fn_init_philos(t_context *shared_context)
 		philos[i].shared_context = shared_context;
 		i++;
 	}
-	shared_context->philo_zero = philos;
+	shared_context->philos = philos;
 	return (philos);
 }
