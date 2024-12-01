@@ -7,10 +7,11 @@ void	fn_destroy_mutexes(t_philo *philo)
 	id = 0;
 	while (id < NB_PHILO)
 	{
-		pthread_mutex_destroy(&OWN_FORK);
+		pthread_mutex_destroy(&(philo[id].fork));
 		id++;
 	}
 	pthread_mutex_destroy(&philo->shared_context->death_mutex);
+	pthread_mutex_destroy(&philo->shared_context->print_mutex);
 }
 
 void	fn_cleanup_data(t_philo *philos)
