@@ -37,7 +37,7 @@ void	fn_join_threads(t_banshee *banshee, t_philo *philos)
 	if (philos)
 	{
 		id = 0;
-		while (id < philos->shared_context->nb_of_philo)
+		while (id < philos->shared_context->nb_of_philos)
 		{
 			pthread_join(philos[id].thread, NULL);
 			id++;

@@ -31,7 +31,7 @@ bool	fn_philos_start_threads(t_philo *philos)
 	int	i;
 
 	i = 0;
-	while (i < philos->shared_context->nb_of_philo)
+	while (i < philos->shared_context->nb_of_philos)
 	{
 		if (pthread_create
 			(&(philos[i].thread), NULL, philos_routine, &philos[i])

@@ -19,7 +19,7 @@ bool	fn_setup_context(t_context *context, char **argv)
 		return (false);
 	context->time_of_start = fn_get_epoch_in_usec();
 	context->is_dead = false;
-	context->nb_of_philo = ft_atoi(argv[1]);
+	context->nb_of_philos = ft_atoi(argv[1]);
 	context->time_to_die = ft_atoi(argv[2]);
 	context->time_to_eat = ft_atoi(argv[3]);
 	context->time_to_sleep = ft_atoi(argv[4]);
@@ -35,11 +35,11 @@ t_philo	*fn_init_philos(t_context *shared_context)
 	t_philo	*philos;
 	int		i;
 
-	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philo);
+	philos = malloc(sizeof(t_philo) * shared_context->nb_of_philos);
 	if (!philos)
 		return (NULL);
 	i = 0;
-	while (i < shared_context->nb_of_philo)
+	while (i < shared_context->nb_of_philos)
 	{
 		if (pthread_mutex_init(&(philos[i].fork), NULL) != EXIT_SUCCESS)
 		{

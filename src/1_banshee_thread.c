@@ -32,7 +32,7 @@ bool	fn_all_satiated(t_banshee *banshee)
 	int	id;
 
 	id = 0;
-	while (id < banshee->shared_context->nb_of_philo)
+	while (id < banshee->shared_context->nb_of_philos)
 	{
 		if (!banshee->philos[id].is_satiated)
 			return (false);
@@ -50,7 +50,7 @@ void	*banshee_routine(void *banshee_arg)
 	while (true)
 	{
 		id = 0;
-		while (id < banshee->shared_context->nb_of_philo)
+		while (id < banshee->shared_context->nb_of_philos)
 		{
 			if (fn_all_satiated(banshee))
 				return (NULL);
