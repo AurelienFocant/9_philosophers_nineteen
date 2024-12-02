@@ -34,7 +34,7 @@ void	fn_eat(t_philo *philo)
 
 	fn_print_state(philo, "is eating");
 	philo->meals_eaten += 1;
-	time_to_eat = philo->shared_context->time_to_eat * mSEC;
+	time_to_eat = philo->shared_context->time_to_eat;
 	time_of_meal = fn_get_epoch_in_usec();
 	while (true)
 	{

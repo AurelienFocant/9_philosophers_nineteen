@@ -12,7 +12,7 @@ long	fn_get_timestamp(t_philo *philo, int mode)
 	timestamp = fn_get_epoch_in_usec() - philo->shared_context->time_of_start;
 	if (mode == PHILO)
 		fn_check_for_deaths(philo);
-	return (timestamp / mSEC);
+	return (timestamp);
 }
 
 long	fn_get_epoch_in_usec(void)
@@ -21,6 +21,6 @@ long	fn_get_epoch_in_usec(void)
 	long			epoch;
 
 	gettimeofday(&timeval, NULL);
-	epoch = (timeval.tv_sec * ONE_SEC) + timeval.tv_usec;
+	epoch = (timeval.tv_sec * 1000) + timeval.tv_usec / 1000;
 	return (epoch);
 }

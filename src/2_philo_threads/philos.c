@@ -11,7 +11,7 @@ void	fn_print_state(t_philo *philo, char *msg)
 void	fn_sleep(t_philo *philo)
 {
 	fn_print_state(philo, "is sleeping");
-	usleep(philo->shared_context->time_to_sleep * mSEC);
+	usleep(philo->shared_context->time_to_sleep);
 }
 
 void	fn_think(t_philo *philo)

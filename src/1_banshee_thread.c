@@ -14,7 +14,7 @@ bool	fn_is_philo_dead(t_banshee *banshee)
 			continue;
 		time_now = fn_get_epoch_in_usec();
 		time_since_last_meal = time_now - banshee->philos[id].time_of_last_meal;
-		time_to_die = banshee->shared_context->time_to_die * mSEC;
+		time_to_die = banshee->shared_context->time_to_die;
 		if (time_since_last_meal >= time_to_die)
 		{
 			fn_keening(banshee, id, time_now);
@@ -33,7 +33,7 @@ void	fn_keening(t_banshee *banshee, int id, long timestamp)
 	banshee->shared_context->is_dead = true;
 	pthread_mutex_unlock(&(banshee->shared_context->death_mutex));
 	//timestamp = fn_get_timestamp(banshee->philos, BANSHEE);
-	printf("%lu philo nb %i DEAD!!!!!!!!!!!\n", timestamp - banshee->shared_context->time_of_start, id);
+	printf("%lu %i died\n", timestamp - banshee->shared_context->time_of_start, id);
 }
 
 bool	fn_all_satiated(t_banshee *banshee)
