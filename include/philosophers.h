@@ -17,7 +17,7 @@
 # define BANSHEE	1
 
 # define NB_PHILO	philo->shared_context->nb_of_philos
-# define PHILOS	philo->shared_context->philos
+# define PHILOS		philo->shared_context->philos
 # define OWN_FORK	philo->fork
 # define LEFT_FORK	(PHILOS + ((philo->id + 1) % NB_PHILO))->fork
 

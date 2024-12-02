@@ -2,18 +2,24 @@
 
 void	fn_lock_forks(t_philo *philo)
 {
-	if (philo->id % 2)
+	//if (philo->id == 4)
+	//	printf("HEY %i", (PHILOS + ((philo->id + 1) % NB_PHILO))->id);
+	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(&(OWN_FORK));
+		if (pthread_mutex_lock(&(OWN_FORK)))
+			printf("YOOO");
 		fn_print_state(philo, "picked up own fork");
-		pthread_mutex_lock(&(LEFT_FORK));
+		if (pthread_mutex_lock(&(LEFT_FORK)))
+			printf("YOOO");
 		fn_print_state(philo, "picked up other fork");
 	}
 	else
 	{
-		pthread_mutex_lock(&(LEFT_FORK));
+		if (pthread_mutex_lock(&(LEFT_FORK)))
+			printf("YOOO");
 		fn_print_state(philo, "picked up other fork");
-		pthread_mutex_lock(&(OWN_FORK));
+		if (pthread_mutex_lock(&(OWN_FORK)))
+			printf("YOOO");
 		fn_print_state(philo, "picked up own fork");
 	}
 }
@@ -43,7 +49,7 @@ void	fn_eat(t_philo *philo)
 			break ;
 	}
 	*/
-	usleep(philo->shared_context->time_to_eat * mSEC);
+	fn_wrapper_usleep(philo->shared_context->time_to_eat);
 }
 
 void	fn_check_if_satiated(t_philo *philo)
