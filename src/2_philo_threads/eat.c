@@ -28,16 +28,17 @@ void	fn_eat(t_philo *philo)
 {
 	fn_print_state(philo, "is eating");
 	philo->meals_eaten += 1;
+
 	/*
 	long	time_of_meal;
 	long	time_now;
 	int		time_to_eat;
 
 	time_to_eat = philo->shared_context->time_to_eat;
-	time_of_meal = fn_get_epoch_in_usec();
+	time_of_meal = fn_get_epoch_in_msec();
 	while (true)
 	{
-		time_now = fn_get_epoch_in_usec();
+		time_now = fn_get_epoch_in_msec();
 		if (time_now >= (time_of_meal + time_to_eat))
 			break ;
 	}

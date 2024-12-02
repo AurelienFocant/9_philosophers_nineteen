@@ -17,7 +17,7 @@ bool	fn_setup_context(t_context *context, char **argv)
 		return (false);
 	if (pthread_mutex_init(&(context->print_mutex), NULL) != EXIT_SUCCESS)
 		return (false);
-	context->time_of_start = fn_get_epoch_in_usec();
+	context->time_of_start = fn_get_epoch_in_msec();
 	context->is_dead = false;
 	context->nb_of_philos = ft_atoi(argv[1]);
 	context->time_to_die = ft_atoi(argv[2]);
@@ -47,7 +47,7 @@ t_philo	*fn_init_philos(t_context *shared_context)
 			return (NULL);
 		}
 		philos[i].id = i;
-		philos[i].time_of_last_meal = fn_get_epoch_in_usec();
+		philos[i].time_of_last_meal = fn_get_epoch_in_msec();
 		philos[i].meals_eaten = 0;
 		philos[i].shared_context = shared_context;
 		i++;

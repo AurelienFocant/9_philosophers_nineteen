@@ -12,7 +12,7 @@ bool	fn_is_philo_dead(t_banshee *banshee)
 	{
 		if (banshee->philos[id].is_satiated)
 			continue;
-		time_now = fn_get_epoch_in_usec();
+		time_now = fn_get_epoch_in_msec();
 		time_since_last_meal = time_now - banshee->philos[id].time_of_last_meal;
 		time_to_die = banshee->shared_context->time_to_die;
 		if (time_since_last_meal >= time_to_die)
