@@ -2,7 +2,6 @@
 
 void	fn_print_state(t_philo *philo, char *msg)
 {
-	fn_check_for_deaths(philo);
 	pthread_mutex_lock(&(philo->shared_context->print_mutex));
 	printf("%lu philo nb %i %s\n", fn_get_timestamp(philo, PHILO), philo->id, msg);
 	pthread_mutex_unlock(&(philo->shared_context->print_mutex));
@@ -11,7 +10,7 @@ void	fn_print_state(t_philo *philo, char *msg)
 void	fn_sleep(t_philo *philo)
 {
 	fn_print_state(philo, "is sleeping");
-	usleep(philo->shared_context->time_to_sleep);
+	usleep(philo->shared_context->time_to_sleep * mSEC);
 }
 
 void	fn_think(t_philo *philo)

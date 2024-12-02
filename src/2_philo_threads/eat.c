@@ -6,7 +6,6 @@ void	fn_lock_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(&(OWN_FORK));
 		fn_print_state(philo, "picked up own fork");
-		fn_check_for_deaths(philo);
 		pthread_mutex_lock(&(LEFT_FORK));
 		fn_print_state(philo, "picked up other fork");
 	}
@@ -14,7 +13,6 @@ void	fn_lock_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(&(LEFT_FORK));
 		fn_print_state(philo, "picked up other fork");
-		fn_check_for_deaths(philo);
 		pthread_mutex_lock(&(OWN_FORK));
 		fn_print_state(philo, "picked up own fork");
 	}
@@ -28,12 +26,13 @@ void	fn_unlock_forks(t_philo *philo)
 
 void	fn_eat(t_philo *philo)
 {
+	fn_print_state(philo, "is eating");
+	philo->meals_eaten += 1;
+	/*
 	long	time_of_meal;
 	long	time_now;
 	int		time_to_eat;
 
-	fn_print_state(philo, "is eating");
-	philo->meals_eaten += 1;
 	time_to_eat = philo->shared_context->time_to_eat;
 	time_of_meal = fn_get_epoch_in_usec();
 	while (true)
@@ -42,6 +41,8 @@ void	fn_eat(t_philo *philo)
 		if (time_now >= (time_of_meal + time_to_eat))
 			break ;
 	}
+	*/
+	usleep(philo->shared_context->time_to_eat * mSEC);
 }
 
 void	fn_check_if_satiated(t_philo *philo)
@@ -55,9 +56,7 @@ void	fn_check_if_satiated(t_philo *philo)
 
 void	fn_try_to_eat(t_philo *philo)
 {
-	fn_check_for_deaths(philo);
 	fn_lock_forks(philo);
-	fn_check_for_deaths(philo);
 	fn_update_time_last_meal(philo);
 	fn_eat(philo);
 	fn_unlock_forks(philo);
