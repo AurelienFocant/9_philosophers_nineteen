@@ -14,6 +14,11 @@ void	fn_sleep(t_philo *philo)
 	usleep(philo->shared_context->time_to_sleep * mSEC);
 }
 
+void	fn_think(t_philo *philo)
+{
+	fn_print_state(philo, "is thinking");
+}
+
 void	*philos_routine(void *philo_arg)
 {
 	t_philo	*philo;
@@ -23,6 +28,7 @@ void	*philos_routine(void *philo_arg)
 	{
 		fn_try_to_eat(philo);
 		fn_sleep(philo);
+		fn_think(philo);
 	}
 }
 

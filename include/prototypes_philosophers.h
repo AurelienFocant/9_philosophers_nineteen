@@ -27,6 +27,7 @@ void	fn_try_to_eat(t_philo *philo);
 /* File: philos.c */
 void	fn_print_state(t_philo *philo, char *msg);
 void	fn_sleep(t_philo *philo);
+void	fn_think(t_philo *philo);
 void	*philos_routine(void *philo_arg);
 bool	fn_philos_start_threads(t_philo *philos);
 
