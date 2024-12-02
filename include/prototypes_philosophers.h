@@ -45,8 +45,8 @@ long	fn_get_timestamp(t_philo *philo, int mode);
 long	fn_get_epoch_in_usec(void);
 
 /* File: 1_banshee_thread.c */
-bool	fn_is_philo_dead(t_banshee *banshee, int id);
-void	fn_keening(t_banshee *banshee, int id);
+bool	fn_is_philo_dead(t_banshee *banshee);
+void	fn_keening(t_banshee *banshee, int id, long timestamp);
 bool	fn_all_satiated(t_banshee *banshee);
 void	*banshee_routine(void *banshee_arg);
 bool	fn_banshee_start_thread( t_banshee *banshee, t_context *shared_context, t_philo *philos);
