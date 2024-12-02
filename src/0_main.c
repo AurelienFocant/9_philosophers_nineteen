@@ -6,6 +6,11 @@ int	main(int argc, char **argv)
 	t_banshee	banshee;
 	t_philo		*philos;
 
+	//TODO
+	//	- check args
+	//	- if only 1 philo
+	//	- mutex on satiation
+	//	- take libft out + Makefile
 	if (!fn_check_args(argc, argv))
 		return (EXIT_FAILURE);
 	if (!fn_setup_context(&shared_context, argv))
