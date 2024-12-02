@@ -40,9 +40,7 @@ void	fn_check_for_deaths(t_philo *philo);
 
 /* File: 3_timestamps_utils.c */
 void	fn_update_time_last_meal(t_philo *philo);
-bool	fn_is_starving(t_philo *philo);
-long	fn_get_timestamp(t_philo *philo);
-long	fn_get_timestamp_banshee(t_philo *philo);
+long	fn_get_timestamp(t_philo *philo, int mode);
 long	fn_get_epoch_in_usec(void);
 
 /* File: 1_banshee_thread.c */

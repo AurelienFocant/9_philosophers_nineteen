@@ -13,6 +13,9 @@
 # define mSEC		1000
 # define ONE_SEC	1000000
 
+# define PHILO		0
+# define BANSHEE	1
+
 # define NB_PHILO	philo->shared_context->nb_of_philos
 # define PHILOS	philo->shared_context->philos
 # define OWN_FORK	philo->fork

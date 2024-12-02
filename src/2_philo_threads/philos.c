@@ -4,7 +4,7 @@ void	fn_print_state(t_philo *philo, char *msg)
 {
 	fn_check_for_deaths(philo);
 	pthread_mutex_lock(&(philo->shared_context->print_mutex));
-	printf("%lu philo nb %i %s\n", fn_get_timestamp(philo), philo->id, msg);
+	printf("%lu philo nb %i %s\n", fn_get_timestamp(philo, PHILO), philo->id, msg);
 	pthread_mutex_unlock(&(philo->shared_context->print_mutex));
 }
 

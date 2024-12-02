@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 		fn_cleanup_data(philos);
 		return (EXIT_FAILURE);
 	}
-	if(!fn_philos_start_threads(philos))
+	if (!fn_philos_start_threads(philos))
 	{
 		fn_cleanup_data(philos);
 		return (EXIT_FAILURE);
