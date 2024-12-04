@@ -28,6 +28,7 @@ typedef	struct s_context
 	long			time_of_start;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	satiation_mutex;
 	bool			is_dead;
 	int				nb_of_philos;
 	t_philo			*philos;
@@ -35,6 +36,7 @@ typedef	struct s_context
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				total_nb_of_meals;
+	int				nb_of_philos_satiated;
 }	t_context;
 
 typedef struct s_philo

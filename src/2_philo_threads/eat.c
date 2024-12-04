@@ -15,6 +15,7 @@ void	fn_lock_forks(t_philo *philo)
 	}
 	else
 	{
+		usleep(1);
 		if (pthread_mutex_lock(&(LEFT_FORK)))
 			printf("YOOO");
 		fn_print_state(philo, "picked up other fork");
@@ -56,7 +57,11 @@ void	fn_check_if_satiated(t_philo *philo)
 {
 	if (philo->meals_eaten == philo->shared_context->total_nb_of_meals)
 	{
+		pthread_mutex_lock(&(philo->shared_context->satiation_mutex));
 		philo->is_satiated = true;
+		philo->shared_context->nb_of_philos_satiated++;
+		pthread_mutex_unlock(&(philo->shared_context->satiation_mutex));
+		fn_unlock_forks(philo);
 		pthread_exit(&(philo->thread));
 	}
 }

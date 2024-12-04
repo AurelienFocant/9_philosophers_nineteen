@@ -10,12 +10,18 @@ bool	fn_is_philo_dead(t_banshee *banshee)
 	id = 0;
 	while (id < banshee->shared_context->nb_of_philos)
 	{
+		pthread_mutex_lock(&(banshee->shared_context->satiation_mutex));
 		if (banshee->philos[id].is_satiated)
+		{
+			id++;
+			pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
 			continue;
+		}
+		pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
 		time_now = fn_get_epoch_in_msec();
 		time_since_last_meal = time_now - banshee->philos[id].time_of_last_meal;
 		time_to_die = banshee->shared_context->time_to_die;
-		if (time_since_last_meal >= time_to_die)
+		if (time_since_last_meal > time_to_die)
 		{
 			fn_keening(banshee, id, time_now);
 			return (true);
@@ -38,16 +44,32 @@ void	fn_keening(t_banshee *banshee, int id, long timestamp)
 
 bool	fn_all_satiated(t_banshee *banshee)
 {
-	int	id;
+	/*
+	   int	id;
 
-	id = 0;
-	while (id < banshee->shared_context->nb_of_philos)
+	   id = 0;
+	   while (id < banshee->shared_context->nb_of_philos)
+	   {
+	   printf("id is %i\n", id);
+	//pthread_mutex_lock(&(banshee->shared_context->satiation_mutex));
+	printf("philo %i is satiated %i\n", id,banshee->philos[id].is_satiated); 
+	if (!banshee->philos[id].is_satiated)
 	{
-		if (!banshee->philos[id].is_satiated)
-			return (false);
-		id++;
+	pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
+	return (false);
 	}
-	return (true);
+	pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
+	id++;
+	}
+	*/
+	if (banshee->shared_context->nb_of_philos_satiated == banshee->shared_context->nb_of_philos)
+	{
+		pthread_mutex_lock(&(banshee->shared_context->death_mutex));
+		banshee->shared_context->is_dead = true;
+		pthread_mutex_unlock(&(banshee->shared_context->death_mutex));
+		return (true);
+	}
+	return (false);
 }
 
 void	*banshee_routine(void *banshee_arg)
@@ -57,9 +79,9 @@ void	*banshee_routine(void *banshee_arg)
 	banshee = (t_banshee *) banshee_arg;
 	while (true)
 	{
-		if (fn_is_philo_dead(banshee))
-			return (NULL);
 		if (fn_all_satiated(banshee))
+			return (NULL);
+		if (fn_is_philo_dead(banshee))
 			return (NULL);
 	}
 	return (NULL);

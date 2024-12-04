@@ -8,7 +8,6 @@ int	main(int argc, char **argv)
 
 	//TODO
 	//	- check args
-	//	- if only 1 philo
 	//	- mutex on satiation
 	//	- take libft out + Makefile
 	if (!fn_check_args(argc, argv))

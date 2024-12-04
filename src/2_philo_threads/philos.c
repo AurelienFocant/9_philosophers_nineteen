@@ -47,7 +47,6 @@ void	*one_philo_routine(void *philo_arg)
 	pthread_exit(philo->thread);
 }
 
-
 bool	fn_philos_start_threads(t_philo *philos)
 {
 	int	i;

@@ -17,6 +17,8 @@ bool	fn_setup_context(t_context *context, char **argv)
 		return (false);
 	if (pthread_mutex_init(&(context->print_mutex), NULL) != EXIT_SUCCESS)
 		return (false);
+	if (pthread_mutex_init(&(context->satiation_mutex), NULL) != EXIT_SUCCESS)
+		return (false);
 	context->time_of_start = fn_get_epoch_in_msec();
 	context->is_dead = false;
 	context->nb_of_philos = ft_atoi(argv[1]);
@@ -27,6 +29,7 @@ bool	fn_setup_context(t_context *context, char **argv)
 		context->total_nb_of_meals = ft_atoi(argv[5]);
 	else
 		context->total_nb_of_meals = -1;
+	context->nb_of_philos_satiated = 0;
 	return (true);
 }
 
