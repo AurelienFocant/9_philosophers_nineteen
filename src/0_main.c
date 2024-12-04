@@ -7,8 +7,6 @@ int	main(int argc, char **argv)
 	t_philo		*philos;
 
 	//TODO
-	//	- check args
-	//	- mutex on satiation
 	//	- take libft out + Makefile
 	if (!fn_check_args(argc, argv))
 		return (EXIT_FAILURE);
