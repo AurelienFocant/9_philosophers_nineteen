@@ -5,6 +5,9 @@
 
 /*----------------  src/4_general_utils  ---------------*/
 /* File: init.c */
+bool	fn_check_nb_of_args(int argc);
+bool	fn_check_args_only_digits(char **argv);
+bool	fn_check_args_not_zero(char **argv);
 bool	fn_check_args(int argc, char **argv);
 bool	fn_setup_context(t_context *context, char **argv);
 t_philo	*fn_init_philos(t_context *shared_context);

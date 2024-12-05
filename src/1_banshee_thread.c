@@ -45,10 +45,9 @@ void	fn_keening(t_banshee *banshee, int id, long timestamp)
 bool	fn_all_satiated(t_banshee *banshee)
 {
 	if (banshee->shared_context->nb_of_philos_satiated == banshee->shared_context->nb_of_philos)
-	{
 		return (true);
-	}
-	return (false);
+	else
+		return (false);
 }
 
 void	*banshee_routine(void *banshee_arg)
