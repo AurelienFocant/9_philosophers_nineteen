@@ -9,7 +9,6 @@ int	main(int argc, char **argv)
 	//TODO
 	//	- take libft out + Makefile
 	//	- check data is well cleaned and freed when all exits happen
-	//	- if one philo takes his fork too late
 	if (!fn_check_args(argc, argv))
 		return (EXIT_FAILURE);
 	if (!fn_setup_context(&shared_context, argv))

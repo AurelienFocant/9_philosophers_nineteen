@@ -42,8 +42,8 @@ void	*one_philo_routine(void *philo_arg)
 
 	philo = (t_philo *) philo_arg;
 	pthread_mutex_lock(&(OWN_FORK));
-	fn_wrapper_usleep(philo->shared_context->time_to_die);
 	fn_print_state(philo, "has taken a fork");
+	fn_wrapper_usleep(philo->shared_context->time_to_die);
 	pthread_exit(philo->thread);
 }
 
