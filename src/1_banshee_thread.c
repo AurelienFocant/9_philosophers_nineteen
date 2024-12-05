@@ -44,29 +44,8 @@ void	fn_keening(t_banshee *banshee, int id, long timestamp)
 
 bool	fn_all_satiated(t_banshee *banshee)
 {
-	/*
-	   int	id;
-
-	   id = 0;
-	   while (id < banshee->shared_context->nb_of_philos)
-	   {
-	   printf("id is %i\n", id);
-	//pthread_mutex_lock(&(banshee->shared_context->satiation_mutex));
-	printf("philo %i is satiated %i\n", id,banshee->philos[id].is_satiated); 
-	if (!banshee->philos[id].is_satiated)
-	{
-	pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
-	return (false);
-	}
-	pthread_mutex_unlock(&(banshee->shared_context->satiation_mutex));
-	id++;
-	}
-	*/
 	if (banshee->shared_context->nb_of_philos_satiated == banshee->shared_context->nb_of_philos)
 	{
-		pthread_mutex_lock(&(banshee->shared_context->death_mutex));
-		banshee->shared_context->is_dead = true;
-		pthread_mutex_unlock(&(banshee->shared_context->death_mutex));
 		return (true);
 	}
 	return (false);

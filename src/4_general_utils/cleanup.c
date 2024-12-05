@@ -12,6 +12,7 @@ void	fn_destroy_mutexes(t_philo *philo)
 	}
 	pthread_mutex_destroy(&philo->shared_context->death_mutex);
 	pthread_mutex_destroy(&philo->shared_context->print_mutex);
+	pthread_mutex_destroy(&philo->shared_context->satiation_mutex);
 }
 
 void	fn_cleanup_data(t_philo *philos)
